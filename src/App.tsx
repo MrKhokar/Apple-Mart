@@ -1,26 +1,49 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { FC } from "react";
+import { Routes, Route } from "react-router-dom";
 
-function App() {
+import { PageHeader, Row, Col } from "antd";
+import Header from "./Components/Header";
+import Footer from "./Components/Footer";
+import "./App.css";
+import Home from "./Components/Home";
+import About from "./Components/About";
+import Contact from "./Components/Contacts";
+import Products from "./Components/Products";
+
+const App: FC = () => { 
+  const image = (
+    <img
+      className="icon"
+      src={require("./images/icon.png")}
+      alt="icon"
+      height="50px"
+    />
+  );
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Row gutter={24}>
+        <Col span={24}>
+          <PageHeader
+            style={{
+              border: "5px solid rgb(235, 237, 240)"
+            }}
+            title={image}
+          />
+          <Header />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/contacts" element={<Contact />} />
+            <Route path="/products" element={<Products />} />
+          </Routes>
+        </Col>
+      </Row>
+
+      <Row>
+        <Footer />{" "}
+      </Row>
     </div>
   );
-}
+};
 
 export default App;
